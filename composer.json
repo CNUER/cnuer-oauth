@@ -1,0 +1,14 @@
+{
+    "name": "cnuer/oauth",
+    "description": "cnuer oauth",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "melancn",
+            "email": "cc@cnuer.cn"
+        }
+    ]
+}
