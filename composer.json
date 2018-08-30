@@ -1,6 +1,7 @@
 {
     "name": "cnuer/oauth",
     "description": "cnuer oauth",
+    "keywords": ["authentication"],
     "require": {
         "guzzlehttp/guzzle": "^6.3"
     },
