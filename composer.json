@@ -1,5 +1,5 @@
 {
-    "name": "cnuer/oauth",
+    "name": "cnuer/Oauth",
     "description": "cnuer oauth",
     "keywords": ["authentication"],
     "require": {
@@ -11,5 +11,10 @@
             "name": "melancn",
             "email": "cc@cnuer.cn"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "cnuer\\Oauth\\": ""
+        }
+    }
 }
