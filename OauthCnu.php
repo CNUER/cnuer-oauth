@@ -18,7 +18,7 @@ class OauthCnu
         $this->api_key = $info['api_key'];
         $this->api_secret = $info['api_secret'];
         $this->callback_uri = $info['callback_uri'];
-        $this->http_client = new GuzzleHttp\Client();
+        $this->http_client = new \GuzzleHttp\Client();
     }
     
     public function getAccessToken($code)
@@ -34,8 +34,7 @@ class OauthCnu
         
         if ($res->getStatusCode() == 200) {
             $body = $res->getBody();
-            $json = json_decode($body);
-            return $json->access_token;
+            return json_decode($body);
         }
         
         return false;
@@ -58,7 +57,12 @@ class OauthCnu
     
     public function goToLogin()
     {
-        header('location:'. self::PREFIX_URL . self::URL_LOGIN . '?redirect_uri='.urlencode($this->callback_uri));
+        $query = [
+            'client_id'     => $this->api_key,
+            'redirect_uri'  => $this->callback_uri
+        ];
+        header('location:'. self::PREFIX_URL . self::URL_LOGIN . '?'.http_build_query($query));
+        exit;
     }
     
     private function checkKey()
