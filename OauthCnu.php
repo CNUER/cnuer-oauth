@@ -3,10 +3,10 @@ namespace cnuer\Oauth;
 
 class OauthCnu
 {
-    const PREFIX_URL = '';
-    const URL_LOGIN = '';
-    const URL_GET_ACCESS_TOKEN = '';
-    const URL_GET_USER_INFO = '';
+    const PREFIX_URL = 'https://api.cnuer.cn/oauth2';
+    const URL_LOGIN = '/authCnu';
+    const URL_GET_ACCESS_TOKEN = '/getAccessToken';
+    const URL_GET_USER_INFO = '/getUserInfo';
     
     private $api_key;
     private $api_secret;
@@ -28,7 +28,9 @@ class OauthCnu
             'client_secret' => $this->api_secret,
             'code'          => $code
         ];
-        $res = $this->http_client->request('GET', self::PREFIX_URL . self::URL_GET_ACCESS_TOKEN . '?' . http_build_query($query));
+        $res = $this->http_client->request('GET', self::PREFIX_URL . self::URL_GET_ACCESS_TOKEN, [
+            'query' => $query
+        ]);
         
         if ($res->getStatusCode() == 200) {
             $body = $res->getBody();
@@ -42,7 +44,9 @@ class OauthCnu
     public function getUserInfo($access_token)
     {
         $query = ['access_token' => $access_token];
-        $res = $this->http_client->request('GET', self::PREFIX_URL . self::URL_GET_USER_INFO . '?' . http_build_query($query));
+        $res = $this->http_client->request('GET', self::PREFIX_URL . self::URL_GET_USER_INFO, [
+            'query' => $query
+        ]);
         
         if ($res->getStatusCode() == 200) {
             $body = $res->getBody();
